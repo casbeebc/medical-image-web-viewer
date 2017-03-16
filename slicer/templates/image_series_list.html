@@ -20,8 +20,7 @@
       <td>{{ series.series_uid }}</td>
       <td>{{ series.voxels.shape }}</td>
 
-      <!-- TODO: make these links point somewhere -->
-      <td><a href="#">View</a></td>  
+      <td><a href='view/{{ series.id }}'>View</a></td>  
     </tr>
     {% endfor %}
   </tbody>

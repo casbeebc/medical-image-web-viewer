@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block "content" %}
+
+<h1>Image Series</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Patient ID</th>
+      <th>Study UID</th>
+      <th>Series UID</th>
+      <th>Dimensions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ series.patient_id }}</td>
+      <td>{{ series.study_uid }}</td>
+      <td>{{ series.series_uid }}</td>
+      <td>{{ voxels.shape }}</td>
+    </tr>
+  </tbody>
+</table><br/><br/>
+<div><span id="imageCounter">1</span>/{{ voxels.shape.2 }}</div>
+<img id="imageBox" src="#"><br/>
+<a href="#" onclick="previous();return false;">&lt;--</a>&nbsp;&nbsp;<a href="#" onclick="next();return false;">--></a>
+<script>
+var imageCounter = 0;
+
+document.getElementById("imageBox").src = '../{{ series.images_path }}/0.png';
+
+function previous() {
+  imageCounter--;
+  if(imageCounter < 0) {
+    imageCounter = {{ voxels.shape.2|add:"-1" }};
+  }
+  document.getElementById("imageCounter").innerHTML = imageCounter+1;
+  document.getElementById("imageBox").src = '../{{ series.images_path }}/' + imageCounter + '.png';
+}
+
+function next() {
+    imageCounter++;
+    if(imageCounter >= {{ voxels.shape.2 }}) {
+      imageCounter = 0;
+    }
+    document.getElementById("imageCounter").innerHTML = imageCounter+1;
+    document.getElementById("imageBox").src = '../{{ series.images_path }}/' + imageCounter + '.png';
+}
+
+
+
+</script>
+
+{% endblock %}

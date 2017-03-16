@@ -1,6 +1,7 @@
 import numpy as np
 
 from django.conf import settings
+from django.conf.urls.static import static
 from django.core.files.base import ContentFile
 from django.db import models
 
