@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block "content" %}
+<h1>All Image Series</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Patient ID</th>
+      <th>Study UID</th>
+      <th>Series UID</th>
+      <th>Dimensions</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for series in all_image_series %}
+    <tr>
+      <td>{{ series.patient_id }}</td>
+      <td>{{ series.study_uid }}</td>
+      <td>{{ series.series_uid }}</td>
+      <td>{{ series.voxels.shape }}</td>
+
+      <!-- TODO: make these links point somewhere -->
+      <td><a href="#">View</a></td>  
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
