@@ -2,7 +2,6 @@ __pycache__
 db.sqlite3
 bin
 lib
-media
 pyvenv.cfg
 pip-selfcheck.json
 .DS_Store
