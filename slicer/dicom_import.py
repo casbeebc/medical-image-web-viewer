@@ -51,8 +51,6 @@ def combine_slices(slice_datasets):
     matrix that converts the ijk-pixel-indices into the xyz-coordinates in the
     patient's coordinate system.
 
-    See http://dicom.innolitics.com/ciods/ct-image/image-plane for details.
-
     This matrix, M, should fulfill:
 
     [x, y, z, 1].T = M @ [i, j, k, 1].T
