@@ -14,35 +14,41 @@ def export_to_png(path, voxels):
     pixels = img.load()
     
     interestingKValues = []
-    currentK = 0
-    maxNum = sys.maxsize*-1
-    maxNums = []
+    current_k = 0
     
-    for k, i, j in product(range(voxels.shape[2]), range(voxels.shape[0]), range(voxels.shape[1])):
-        if currentK != k:
-            maxNums.append(maxNum)
-            maxNum = sys.maxsize*-1
-            currentK = k
-            
-        if voxels[i,j,k] > maxNum:
-            maxNum = voxels[i,j,k]
-            
-    maxNums.append(maxNum)
-        
+    max_values = _get_maximum_values(voxels)
+    
     for k, i, j in product(range(voxels.shape[2]), range(voxels.shape[0]), range(voxels.shape[1])):
         
         # initialize every time k changes
-        if currentK != k:
-            _save_image("{}/{}.png".format(path, currentK), img)
+        if current_k != k:
+            _save_image("{}/{}.png".format(path, current_k), img)
             img = Image.new("L", imageShape)
             pixels = img.load()
-            currentK = k
+            current_k = k
             
         # Rescaling grey scale between 0-255
-        pixels[i,j] = int((float(voxels[i,j,k]) / float(maxNums[k])) * 255.0)
+        pixels[i,j] = int((float(voxels[i,j,k]) / float(max_values[k])) * 255.0)
         
     _save_image("{}/{}.png".format(path, k), img)
 
+def _get_maximum_values(voxels):
+    max_values = []
+    max_value = sys.maxsize*-1
+    current_k = 0
+    
+    for k, i, j in product(range(voxels.shape[2]), range(voxels.shape[0]), range(voxels.shape[1])):
+        if current_k != k:
+            max_values.append(max_value)
+            max_value = sys.maxsize*-1
+            current_k = k
+            
+        if voxels[i,j,k] > max_value:
+            max_value = voxels[i,j,k]
+            
+    max_values.append(max_value)
+    
+    return max_values
 
 def _save_image(filepath, image):
     try:
