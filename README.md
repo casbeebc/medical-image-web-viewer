@@ -15,7 +15,8 @@ Run these commands:
 # Run
 
     python manage.py runserver
-    Go to: 
-           * http://127.0.0.1:8000/admin to add DICOM zip files
-           * http://127.0.0.1:8000 to see the listings
-           * click View to see the image series
+    
+Go to: 
+* http://127.0.0.1:8000/admin to add DICOM zip files
+* http://127.0.0.1:8000 to see the listings
+* click View to see the image series
