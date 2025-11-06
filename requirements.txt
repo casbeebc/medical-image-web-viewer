@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
-django==4.2.25
+django==4.2.26
 numpy==1.22.0
 pydicom==0.9.9
 pytest==3.0.6
